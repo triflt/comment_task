@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Form for reviews adding{% endblock %}
+
+{% block content %}
+<div class="features">
+    <h1>Write your review</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.name }}<br>
+        {{ form.review }}<br>
+        <span>{{ error }}></span>
+        <button class="btn btn-success" type="submit"> Send review</button>
+    </form>
+</div>
+
+{% endblock %}
