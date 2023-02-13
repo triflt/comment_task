@@ -15,6 +15,7 @@ class ArticleForm(ModelForm):
             "review": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'Film review'
-            })
-
+            }),
+            #"emotion_predict": 'pos',
+            #"rating_predict": 10,
         }
