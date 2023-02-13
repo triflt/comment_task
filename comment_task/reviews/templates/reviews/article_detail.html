@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Form for reviews adding{% endblock %}
+
+{% block content %}
+<div class="my-class">
+    <h1>Review details</h1>
+    <p>Film name: {{ name }}</p>
+    <p>Review: {{ review }}</p>
+    <p>Emotions: {{ emotion_predict }}</p>
+    <p>Rating: {{ rating_predict }} / 10</p>
+    <a href="/"><button class="btn btn-warning">Main page</button></a>
+</div>
+
+{% endblock %}

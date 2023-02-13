@@ -4,9 +4,11 @@
 
 {% block content %}
     <div class="features">
-        <h1>{{ title }}</h1>
-        <p> Write a comment to the movie you watched in the text box below, and I'll try to determine if you liked it and rate your comment</p>
-        <button class="btn btn-warning">Send!</button>
+        <h1>Hello!</h1>
+        <p> I`m a review analyzer bot which created by machine learning methods.
+            Click on the button bellow and then write a comment to the movie you watched in the text box below,
+            and I'll try to determine if you liked it and rate your comment</p>
+        <a href="{% url 'create' %}"><button class="btn btn-warning">Make review</button></a>
     </div>
 
 {% endblock %}

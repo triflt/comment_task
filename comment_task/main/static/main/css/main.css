@@ -9,7 +9,7 @@ aside {
     padding: 2.5%;
     height: 100vh;
     color: #fff;
-    border-left: 5px solid #7a457a
+    border-left: 4px solid #616161
 }
 
 aside img {
@@ -74,3 +74,11 @@ form {
     margin-top: 50px;
 }
 
+.my-class {
+    float: left;
+    color: #404040;
+    margin-top: 100px;
+    font_size: 40px;
+    text-align: center;
+    width: 75%;
+}
