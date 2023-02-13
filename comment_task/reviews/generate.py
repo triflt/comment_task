@@ -1,10 +1,7 @@
-import os
-import re
-
 import numpy as np
 import pickle
 
-from tqdm import tqdm
+
 from gensim.models import Word2Vec
 from gensim.utils import tokenize
 
