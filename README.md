@@ -1,5 +1,5 @@
-# comment_task
-Comment classification task on "Large Movie Review Dataset"
+# Film comments classification
+Comment classification task on "Large Movie Review Dataset" with web on Dlango and deploy
 
 
 You can get dataset from https://github.com/jalbertbowden/large-movie-reviews-dataset
