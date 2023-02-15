@@ -1,14 +1,14 @@
 import numpy as np
 import pickle
 
-
-from gensim.models import Word2Vec
+from gensim.models import KeyedVectors
 from gensim.utils import tokenize
 
+model_wv = KeyedVectors.load_word2vec_format('../models/model.bin', binary=True, limit=100000)
 
-model_wv = Word2Vec.load('../models/trained_word2vec.model')
 
-model_reg = pickle.load(open('../models/cb_reg.model', "rb"))
+with open('../models/model_regression.pkl', 'rb') as file:
+    model_reg = pickle.load(file)
 
 
 def sent2vec_generate(question: str):
@@ -17,8 +17,8 @@ def sent2vec_generate(question: str):
     question_array = np.zeros(dim)
     count = 0
     for word in token_question:
-        if model_wv.wv.__contains__(str(word)):
-            question_array += (np.array(model_wv.wv[str(word)]))
+        if model_wv.__contains__(str(word)):
+            question_array += (np.array(model_wv[str(word)]))
             count += 1
     if count == 0:
         return question_array
@@ -27,9 +27,10 @@ def sent2vec_generate(question: str):
 
 
 def rating_predict(vector):
-    predict = model_reg.predict(vector)
+    predict = model_reg.predict(vector.reshape(1, -1))
+    print(predict)
 
-    '''def remake(x):
+    def remake(x):
         flag = -1 if x < 5 else 1
         threshold = 5 if x < 5 else 11
         x += flag * (threshold - x) * 0.5
@@ -37,13 +38,14 @@ def rating_predict(vector):
             return 1
         if x > 10:
             return 10
-        return x'''
+        return x
 
-    return predict
+    return remake(predict[0])
 
 
 def emotion_predict(rating):
     return 'positive :)' if rating >= 6 else 'negative :('
+
 
 """vec = sent2vec_generate('I was prepared for a turgid talky soap opera cum travelogue, '
                         'but was pleased to find a fast-paced script, an underlying moral,'
@@ -52,7 +54,7 @@ def emotion_predict(rating):
                         'theres even a shot of the majestic stone Buddhas recently destroyed by the Taliban. '
                         'Not to mention Elizabeth Taylor at her most gloriously beautiful and sympathetic,'
                         ' before she gave in to the gaspy hysterics that marred her later work.'
-                        ' All the supporting players round it out, and I do wonder who trained all those elephants.', model_wv)
+                        ' All the supporting players round it out, and I do wonder who trained all those elephants.')
 
 rating = rating_predict(vec)
 emotion = emotion_predict(rating)
